@@ -102,14 +102,57 @@ namespace PhoneBook.Models
         contactNumber = rdr.GetString(3);
         contactEmail = rdr.GetString(4);
       }
-      Contact foundContact = new Contact(contactFirst, contactLast, contactNumber, contactEmail, contactId)
+      Contact foundContact = new Contact(contactFirst, contactLast, contactNumber, contactEmail, contactId);
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
       return foundContact;
+    }
 
+    public void Save()
+    {
+      MySqulConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+
+      
+      // Begin first param
+      cmd.CommandText = @"INSERT INTO contacts (first) VALUES (@ContactFirst);";
+      MySqlParameter first = new MySqlParameters();
+      first.ParameterName = "@ContactFirst";
+      first.Value = this.First;
+      cmd.Parameters.Add(first);
+      
+      // Beging second param
+      cmd.CommandText = @"INSERT INTO contacts (last) VALUES (@ContactLast);";
+      MySqlParameter last = new MySqlParameters();
+      last.ParameterName = "@ContactLast";
+      last.Value = this.Last;
+      cmd.Parameters.Add(last);
+
+      cmd.CommandText = @"INSERT INTO contacts (number) VALUES (@ContactNumber);";
+      MySqlParameter number = new MySqlParameters();
+      number.ParameterName = "@ContactNumber";
+      number.Value = this.Number;
+      cmd.Parameters.Add(number);
+
+      cmd.CommandText = @"INSERT INTO contacts (email) VALUES (@ContactEmail);";
+      MySqlParameter email = new MySqlParameters();
+      email.ParameterName = "@ContactEmail";
+      email.Value = this.Email;
+      cmd.Parameters.Add(email);
+
+      cmd.ExecuteNonQuery();
+      Id = (int) cmd.LastInsertedId;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
   }
 }
+
