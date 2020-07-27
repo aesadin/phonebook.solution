@@ -2961,8 +2961,8 @@
   "RootNamespace": "PhoneBook",
   "Documents": [
     {
-      "FilePath": "/Users/frederickernest/Desktop/PhoneBook.Solution/PhoneBook/Views/Contacts/Add.cshtml",
-      "TargetPath": "Views\\Contacts\\Add.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/PhoneBook.Solution/PhoneBook/Views/Contacts/New.cshtml",
+      "TargetPath": "Views\\Contacts\\New.cshtml",
       "FileKind": "mvc"
     },
     {
