@@ -1,9 +1,9 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ToDoList
+namespace PhoneBook
 {
-  public class Program
+    public class Program
   {
     public static void Main(string[] args)
     {

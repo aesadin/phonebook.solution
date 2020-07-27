@@ -48,13 +48,16 @@ namespace PhoneBook.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"Select * From items;";
+      cmd.CommandText = @"SELECT * From items;";
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while (rdr.Read())
       {
-        int ContactId = rdr.GetInt32(0);
+        int contactId = rdr.GetInt32(0);
+        string contactFirst = rdr.GetString(1);
+        string contactLast = rdr.GetString(2);
+        string contactNumber = rdr.GetString(3);
         string contactEmail = rdr.GetString(4);
-        Contact newContact = new Conctact (itemEmail, itemId);
+        Contact newContact = new Contact(contactFirst, contactLast, contactNumber, contactEmail, contactId);
         allContacts.Add(newContact);
       }
       conn.Close();
@@ -113,33 +116,33 @@ namespace PhoneBook.Models
 
     public void Save()
     {
-      MySqulConnection conn = DB.Connection();
+      MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
 
       
       // Begin first param
       cmd.CommandText = @"INSERT INTO contacts (first) VALUES (@ContactFirst);";
-      MySqlParameter first = new MySqlParameters();
+      MySqlParameter first = new MySqlParameter();
       first.ParameterName = "@ContactFirst";
       first.Value = this.First;
       cmd.Parameters.Add(first);
       
       // Beging second param
       cmd.CommandText = @"INSERT INTO contacts (last) VALUES (@ContactLast);";
-      MySqlParameter last = new MySqlParameters();
+      MySqlParameter last = new MySqlParameter();
       last.ParameterName = "@ContactLast";
       last.Value = this.Last;
       cmd.Parameters.Add(last);
 
       cmd.CommandText = @"INSERT INTO contacts (number) VALUES (@ContactNumber);";
-      MySqlParameter number = new MySqlParameters();
+      MySqlParameter number = new MySqlParameter();
       number.ParameterName = "@ContactNumber";
       number.Value = this.Number;
       cmd.Parameters.Add(number);
 
       cmd.CommandText = @"INSERT INTO contacts (email) VALUES (@ContactEmail);";
-      MySqlParameter email = new MySqlParameters();
+      MySqlParameter email = new MySqlParameter();
       email.ParameterName = "@ContactEmail";
       email.Value = this.Email;
       cmd.Parameters.Add(email);

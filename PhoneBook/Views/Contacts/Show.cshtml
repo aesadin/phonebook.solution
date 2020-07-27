@@ -1,0 +1,13 @@
+@using PhoneBook.Models;
+
+<h3>Here are your contacts:</h3>
+
+<ol>
+@foreach (Contact contact in @Model["contact"])
+{
+  <li><a href='/contacts/@contact.Id'></a>@contact.Email</li>
+}
+</ol>
+
+
+

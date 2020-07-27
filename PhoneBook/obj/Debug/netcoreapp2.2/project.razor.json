@@ -2966,8 +2966,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/PhoneBook.Solution/PhoneBook/Views/Contacts/Index.cshtml",
-      "TargetPath": "Views\\Contacts\\Index.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/PhoneBook.Solution/PhoneBook/Views/Contacts/Show.cshtml",
+      "TargetPath": "Views\\Contacts\\Show.cshtml",
       "FileKind": "mvc"
     },
     {

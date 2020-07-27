@@ -11,14 +11,21 @@ namespace PhoneBook.Controllers
     {
     return View();
     }
+    
     [HttpPost("contacts/new")]
-    public ActionResult Create(string first, string last, int number, string email)
+    public ActionResult Create(string first, string last, string number, string email)
     {
       Contact newContact = new Contact(first, last, number, email);
-      newContact.save();
-      newContact.AddContact();
-
-      return;
+      newContact.Save(); // this saves newContact in database
+      return View("Show", newContact); // this pushes that new contact info to UI
     }
-  
+    [HttpGet("/items/{itemId}")]
+    public ActionResult Show(int contactId)
+    {
+      Contact contact = Contact.Find(contactId);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("contact", contact);
+      return View(model);
+    }
+  }
 }
