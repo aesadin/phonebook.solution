@@ -6,7 +6,7 @@ namespace PhoneBook.Controllers
 {
   public class ContactsController : Controller
   {
-    [HttpGet("/contacts/new")]
+    [HttpGet("/contacts")]
     public ActionResult New()
     {
     return View();
@@ -19,7 +19,7 @@ namespace PhoneBook.Controllers
       newContact.Save(); // this saves newContact in database
       return View("Show", newContact); // this pushes that new contact info to UI
     }
-    [HttpGet("/items/{itemId}")]
+    [HttpGet("/contacts/{contactId}")]
     public ActionResult Show(int contactId)
     {
       Contact contact = Contact.Find(contactId);

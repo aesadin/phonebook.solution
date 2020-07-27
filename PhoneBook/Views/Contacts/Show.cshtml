@@ -3,9 +3,9 @@
 <h3>Here are your contacts:</h3>
 
 <ol>
-@foreach (Contact contact in @Model["contact"])
+@foreach (Contact contact in Model)
 {
-  <li><a href='/contacts/@contact.Id'></a>@contact.Email</li>
+  <li><a href="/contacts/@contact.Id"></a>@Model["contact"].Email</li>
 }
 </ol>
 
